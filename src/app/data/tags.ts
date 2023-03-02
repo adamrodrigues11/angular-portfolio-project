@@ -1,0 +1,18 @@
+import { Tag } from '../model/tag';
+
+export const TAGS: Tag[] = [
+    { "id": 1, "name": "PHP", "slug": "php" },
+    { "id": 2, "name": "Laravel", "slug": "laravel" },
+    { "id": 3, "name": "Node.js", "slug": "node-js" },
+    { "id": 4, "name": "React", "slug": "react" },
+    { "id": 5, "name": "AWS", "slug": "aws" },
+    { "id": 6, "name": "C#", "slug": "c-sharp" },
+    { "id": 7, "name": ".NET", "slug": "dotnet" },
+    { "id": 8, "name": "Vue", "slug": "vue" },
+    { "id": 9, "name": "Angular", "slug": "angular" },
+    { "id": 10, "name": "CSS", "slug": "css" },
+    { "id": 11, "name": "HTML5", "slug": "html5" },
+    { "id": 12, "name": "SASS", "slug": "sass" },
+    { "id": 13, "name": "JavaScript", "slug": "javascript" },
+];
+  

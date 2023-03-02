@@ -1,55 +1,26 @@
 <header>{{ title }}</header>
 <main>
   <section class="projects-grid" >
-    <div 
-      *ngFor="let project of projects"
-      [ngClass]="{
-        card: true,
-        hidden: ((categoryFilter && (project.category?.id !== categoryFilter.id)) ||
-                (tagFilter && !project.tags?.includes(tagFilter)))
-      }" 
-    >
-      <h2>{{ project.title | uppercase }}</h2>
-      <p>{{ project.excerpt }}</p>
-      <a 
-        *ngIf="project.category"
-        (click)="setCategoryFilter(project.category)"
-      >
-        Category: {{ project.category.name }}
-      </a>
-      <div *ngIf="project.tags && project.tags.length !== 0">
-        Tags:
-        <a 
-          *ngFor="let tag of project.tags"
-          (click)="setTagFilter(tag)"
-        >
-          {{ tag.name }}
-        </a>
-      </div>
-    </div>
+    <app-projects
+      [categoryFilter]="categoryFilter"
+      (newCategoryFilterEvent)="setCategoryFilter($event)"
+      [tagFilter]="tagFilter"
+      (newTagFilterEvent)="setTagFilter($event)" 
+    ></app-projects>
   </section> 
   <section class="sidebar">
-    <h3>Filter By:</h3>
+    <h3>Categories:</h3>
+    <app-categories
+      [categoryFilter]="categoryFilter"
+      (newCategoryFilterEvent)="setCategoryFilter($event)"
+    ></app-categories>
+    <h3>Tags: </h3>
+    <app-tags
+      [tagFilter]="tagFilter"
+      (newTagFilterEvent)="setTagFilter($event)"
+    ></app-tags>
+    <h3>Current Filters:</h3>
     <div>
-      <label for="category">Category</label>
-      <select id="category" (change)="setCategoryFilterOnSelect($event)">
-        <option value="">All</option>
-        <option *ngFor="let category of categories" value="{{ category.id }}">
-          {{ category.name }}
-        </option>
-      </select>
-    </div>
-    <div>
-      <label for="tag">Tag</label>
-      <select id="tag" (change)="setTagFilterOnSelect($event)">
-        <option value="">All</option>
-        <option *ngFor="let tag of tags" value="{{ tag.id }}">
-          {{ tag.name }}
-        </option>
-      </select>
-    </div>
-    <div>
-      <h3>Current Filters:</h3>
       <p *ngIf="categoryFilter">Category: {{ categoryFilter.name }}</p>
       <p *ngIf="tagFilter">Tag: {{ tagFilter.name }}</p>
       <a *ngIf="categoryFilter || tagFilter" (click)="clearFilters()">Clear All</a>

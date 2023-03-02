@@ -1,5 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Project, Tag} from './app.component'
+import { Project} from './model/project';
+import { Tag } from './model/tag';
 
 @Pipe({
   name: 'projectFilter'
@@ -10,7 +11,7 @@ export class ProjectFilterPipe implements PipeTransform {
     let filteredProjects: Project[] = [];
     if (tag) {
       filteredProjects = projects.filter(project => {
-        return JSON.stringify(project.tags).indexOf(JSON.stringify(tag)) + 1;
+        return JSON.stringify(project.tags).indexOf(JSON.stringify(tag)) > -1;
       });
     } else {
       filteredProjects = projects;

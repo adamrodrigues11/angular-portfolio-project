@@ -1,0 +1,20 @@
+<article
+    *ngFor="let project of projects | projectFilter : tagFilter"
+    [class.hidden]="categoryFilter && project.category?.id !== categoryFilter.id"
+>
+    <section>
+        <h2>{{ project.title | uppercase }}</h2>
+        <p>{{ project.excerpt }}</p>
+    </section>
+    <footer>
+        <div *ngIf="project.category" (click)="setCategoryFilter(project.category)">
+            Category: <span>{{ project.category.name }}</span>
+        </div>
+        <div *ngIf="project.tags?.length">
+            Tags:
+            <span *ngFor="let tag of project.tags" (click)="setTagFilter(tag)">
+                {{ tag.name }}
+            </span>
+        </div>
+    </footer>
+</article>

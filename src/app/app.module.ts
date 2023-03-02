@@ -4,11 +4,17 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProjectFilterPipe } from './project-filter.pipe';
+import { ProjectsComponent } from './projects/projects.component';
+import { TagsComponent } from './tags/tags.component';
+import { CategoriesComponent } from './categories/categories.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProjectFilterPipe
+    ProjectFilterPipe,
+    ProjectsComponent,
+    TagsComponent,
+    CategoriesComponent
   ],
   imports: [
     BrowserModule,
