@@ -11,6 +11,12 @@ import { Tag } from '../model/tag';
 })
 
 export class ProjectsComponent {
+  @Input() categoryFilter: Category | undefined;
+  @Output() newCategoryFilterEvent = new EventEmitter<Category>();
+  @Input() tagFilter: Tag | undefined;
+  @Output() newTagFilterEvent = new EventEmitter<Tag>();
+  selectedProject?: Project;
+
   constructor(private projectService: ProjectService) { }
 
   projects: Project[] = [];
@@ -21,11 +27,6 @@ export class ProjectsComponent {
     this.getProjects();
   }
 
-  @Input() categoryFilter: Category | undefined;
-  @Output() newCategoryFilterEvent = new EventEmitter<Category>();
-  @Input() tagFilter: Tag | undefined;
-  @Output() newTagFilterEvent = new EventEmitter<Tag>();
-
   setCategoryFilter(category: Category) {
     this.categoryFilter = category;
     this.newCategoryFilterEvent.emit(category);
@@ -34,6 +35,14 @@ export class ProjectsComponent {
   setTagFilter(tag: Tag) {
     this.tagFilter = tag;
     this.newTagFilterEvent.emit(tag);
+  }
+
+  onSelect(project: Project): void {
+    this.selectedProject = project;
+  }
+
+  clearSelectedProject(): void {
+    this.selectedProject = undefined;
   }
 
   // clearFilters() {
