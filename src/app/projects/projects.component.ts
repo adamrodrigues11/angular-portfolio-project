@@ -21,7 +21,9 @@ export class ProjectsComponent {
 
   projects: Project[] = [];
   getProjects(): void {
-    this.projects = this.projectService.getProjects();
+    this.projectService
+      .getProjects()
+      .subscribe(projects => this.projects = projects);
   }
   ngOnInit(): void {
     this.getProjects();
