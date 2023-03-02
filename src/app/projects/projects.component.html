@@ -6,7 +6,8 @@
     >
         <section>
             <h2>{{ project.title | uppercase }}</h2>
-            <p>{{ project.excerpt }}</p>
+            <p [innerHTML]="project.excerpt"></p>
+            <img [src]="'assets/images/' + ( project.thumb ?? 'project-thumb-default.jpeg') " [alt]="project.title" />
         </section>
         <footer>
             <div *ngIf="project.category" (click)="setCategoryFilter(project.category)">

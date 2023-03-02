@@ -1,7 +1,8 @@
 <article *ngIf="project">
     <section>
         <h2>{{ project.title | uppercase }}</h2>
-        <p>{{ project.body }}</p>
+        <p [innerHTML]="project.body"></p>
+        <img [src]="'assets/images/' + (project.image ?? 'project-image-default.jpg') " [alt]="project.title" />
     </section>
     <footer>
         <div *ngIf="project.category">
