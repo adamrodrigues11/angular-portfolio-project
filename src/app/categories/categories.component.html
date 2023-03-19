@@ -1,5 +1,5 @@
 <div class="categories">
-    <div class="category" *ngFor="let category of categories" (click)="setCategoryFilter(category)">
+    <div class="category" *ngFor="let category of categories" (click)="handleCategoryClicked(category)">
         <span>{{ category.name }}</span>
     </div>
 </div>

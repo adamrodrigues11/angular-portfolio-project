@@ -1,0 +1,1 @@
+<!-- [class.hidden]="categoryFilters.length && categoryFilters.some(category => project.category?.id !== category.id)" -->

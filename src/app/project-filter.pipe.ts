@@ -7,11 +7,13 @@ import { Tag } from './model/tag';
 })
 export class ProjectFilterPipe implements PipeTransform {
 
-  transform(projects: Project[], tag: Tag | undefined): Project[] {
+  transform(projects: Project[], tags?: Tag[]): Project[] {
     let filteredProjects: Project[] = [];
-    if (tag) {
+    if (tags?.length) {
       filteredProjects = projects.filter(project => {
-        return JSON.stringify(project.tags).indexOf(JSON.stringify(tag)) > -1;
+        return tags.some(tag => {
+          JSON.stringify(project.tags).indexOf(JSON.stringify(tag)) > -1;
+        }); 
       });
     } else {
       filteredProjects = projects;
@@ -19,3 +21,5 @@ export class ProjectFilterPipe implements PipeTransform {
     return filteredProjects;
   }
 }
+
+// need to return the union of both filtering arrays (pass a multidimensional array to the pipe)

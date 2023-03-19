@@ -8,9 +8,13 @@ import { Category } from '../model/category';
   styleUrls: ['./categories.component.css']
 })
 export class CategoriesComponent {
-  constructor(private categoryService: CategoryService) { }
-
+  @Input() categoryFilters?: Category[];
+  @Output() onCategoryClicked = new EventEmitter<Category>();
   categories: Category[] = [];
+
+  constructor(private categoryService: CategoryService) {
+   }
+
   getCategories(): void {
     this.categories = this.categoryService.getCategories();
   }
@@ -18,11 +22,7 @@ export class CategoriesComponent {
     this.getCategories();
   }
 
-  @Input() categoryFilter: Category | undefined;
-  @Output() newCategoryFilterEvent = new EventEmitter<Category>();
-
-  setCategoryFilter(category: Category) {
-    this.categoryFilter = category;
-    this.newCategoryFilterEvent.emit(category);
+  handleCategoryClicked(category: Category) {
+    this.onCategoryClicked.emit(category);
   }
 }

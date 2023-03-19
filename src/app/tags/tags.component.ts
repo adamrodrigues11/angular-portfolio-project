@@ -8,9 +8,13 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./tags.component.css']
 })
 export class TagsComponent {
-  constructor(private tagService: TagService) { }
-
+  @Input() tagFilters?: Tag[];
+  @Output() onTagClicked = new EventEmitter<Tag>();
   tags: Tag[] = [];
+
+  constructor(private tagService: TagService) {
+  }
+
   getTags(): void {
     this.tags = this.tagService.getTags();
   }
@@ -18,12 +22,7 @@ export class TagsComponent {
     this.getTags();
   }
 
-  @Input() tagFilter: Tag | undefined;
-  @Output() newTagFilterEvent = new EventEmitter<Tag>();
-
-  setTagFilter(tag: Tag) {
-    this.tagFilter = tag;
-    this.newTagFilterEvent.emit(tag);
-  }
-  
+  handleTagClicked(tag: Tag) {
+    this.onTagClicked.emit(tag);
+  }  
 }

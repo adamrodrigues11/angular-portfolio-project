@@ -1,5 +1,5 @@
 <div class="tags">
-    <div class="tag" *ngFor="let tag of tags" (click)="setTagFilter(tag)">
+    <div class="tag" *ngFor="let tag of tags" (click)="handleTagClicked(tag)">
         <span>{{ tag.name }}</span>
     </div>
 </div>

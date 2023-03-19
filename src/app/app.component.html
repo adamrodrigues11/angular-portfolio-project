@@ -2,31 +2,39 @@
 <main>
   <section class="projects-grid" >
     <app-projects
-      [categoryFilter]="categoryFilter"
-      (newCategoryFilterEvent)="setCategoryFilter($event)"
-      [tagFilter]="tagFilter"
-      (newTagFilterEvent)="setTagFilter($event)" 
+      [categoryFilters]="categoryFilters"
+      (onCategoryClicked)="updateCategoryFilters($event)"
+      [tagFilters]="tagFilters"
+      (onTagClicked)="updateTagFilters($event)" 
     ></app-projects>
   </section> 
   <section class="sidebar">
     <h3>Categories:</h3>
     <app-categories
-      [categoryFilter]="categoryFilter"
-      (newCategoryFilterEvent)="setCategoryFilter($event)"
+      [categoryFilters]="categoryFilters"
+      (onCategoryClicked)="updateCategoryFilters($event)"
     ></app-categories>
     <h3>Tags: </h3>
     <app-tags
-      [tagFilter]="tagFilter"
-      (newTagFilterEvent)="setTagFilter($event)"
+      [tagFilters]="tagFilters"
+      (onTagClicked)="updateTagFilters($event)"
     ></app-tags>
     <h3>Current Filters:</h3>
     <div>
-      <p *ngIf="categoryFilter">Category: {{ categoryFilter.name }}</p>
-      <p *ngIf="tagFilter">Tag: {{ tagFilter.name }}</p>
-      <a *ngIf="categoryFilter || tagFilter" (click)="clearFilters()">Clear All</a>
+      <ng-container *ngIf="categoryFilters?.length">
+        <p *ngFor="let category of categoryFilters">
+          Category: {{ category.name }}
+          <a (click)="removeCategoryFilter(category)">X</a>
+        </p>
+      </ng-container>
+      <ng-container *ngIf="tagFilters?.length">
+        <p *ngFor="let tag of tagFilters">
+          Tag: {{ tag.name }}
+          <a (click)="removeTagFilter(tag)">X</a>
+        </p>
+      </ng-container>
+      <a *ngIf="categoryFilters?.length || tagFilters?.length" (click)="clearFilters()">Clear All</a>
     </div>
   </section>
 </main>
 <footer>&copy; {{ date.getFullYear() }} {{ author }}</footer>
-
-<router-outlet></router-outlet>

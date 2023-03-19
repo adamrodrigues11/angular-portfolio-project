@@ -1,21 +1,19 @@
 <ng-container *ngIf="!selectedProject">
     <article
-        *ngFor="let project of projects | projectFilter : tagFilter"
-        [class.hidden]="categoryFilter && project.category?.id != categoryFilter.id"
-        (click)="onSelect(project)"
+        *ngFor="let project of projects"
     >
         <section>
-            <h2>{{ project.title | uppercase }}</h2>
+            <h2 (click)="handleProjectClicked(project)">{{ project.title | uppercase }}</h2>
             <p [innerHTML]="project.excerpt"></p>
             <img [src]="'assets/images/' + ( project.thumb ?? 'project-thumb-default.jpeg') " [alt]="project.title" />
         </section>
         <footer>
-            <div *ngIf="project.category" (click)="setCategoryFilter(project.category)">
+            <div *ngIf="project.category" (click)="handleCategoryClicked(project.category)">
                 Category: <span>{{ project.category.name }}</span>
             </div>
             <div *ngIf="project.tags?.length">
                 Tags:
-                <span *ngFor="let tag of project.tags" (click)="setTagFilter(tag)">
+                <span *ngFor="let tag of project.tags" (click)="handleTagClicked(tag)">
                     {{ tag.name }}
                 </span>
             </div>
