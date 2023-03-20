@@ -50,8 +50,9 @@ main {
         overflow-x: hidden;
         padding-top: 50px;
         transition: right ease-in 0.3s;
-        background-color: #f8e2e2;
-        opacity: 0.9;
+        // background-color: #f8e2e2;
+        background-color: #e3e5e6;
+        opacity: 0.95;
         display: flex;
         flex: 0 0 250px;
         padding-left: 1rem;
@@ -59,14 +60,15 @@ main {
         flex-direction: column;
         row-gap: 1rem;
         button {
+            cursor: pointer;
             width: fit-content;
             padding: 0.5rem;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.26);
             border-radius: 8%;
             &:hover,
             &:active {
                 transition: all 0.3s ease;
-                box-shadow: 0 8px 26px rgba(0, 0, 0, 0.26);
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.26);
             }
         }
     }

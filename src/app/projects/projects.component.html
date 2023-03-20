@@ -30,6 +30,6 @@
     </article>
 </section>
 <section *ngIf="selectedProject">
-    <div class="back-button" (click)="clearSelectedProject()"></div>
+    <i class="fas fa-arrow-left back-button" (click)="clearSelectedProject()"></i>
     <app-project-detail [project]="selectedProject"></app-project-detail>
 </section>

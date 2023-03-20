@@ -17,25 +17,27 @@
         border: 1px solid #ccc;
         border-radius: 4px;
         &:hover {
-            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.26);
+            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.26);
         }
     }
     .active {
-        border: 1px solid #8e5656;
+        // border: 1px solid #8e5656;
+        border: 1px solid #727272;
         &::after {
             content: "✓";
             margin-left: 0.5rem;
         }
     }
     button {
+        cursor: pointer;
         width: fit-content;
         padding: 0.5rem;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.26);
         border-radius: 8%;
         &:hover,
         &:active {
             transition: all 0.3s ease;
-            box-shadow: 0 8px 26px rgba(0, 0, 0, 0.26);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.26);
         }
     }
 }
