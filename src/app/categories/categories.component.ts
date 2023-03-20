@@ -10,6 +10,7 @@ import { Category } from '../model/category';
 export class CategoriesComponent {
   @Input() categoryFilters?: Category[];
   @Output() onCategoryClicked = new EventEmitter<Category>();
+  @Output() onClearCategoriesClicked = new EventEmitter<void>();
   categories: Category[] = [];
 
   constructor(private categoryService: CategoryService) {
@@ -25,4 +26,13 @@ export class CategoriesComponent {
   handleCategoryClicked(category: Category) {
     this.onCategoryClicked.emit(category);
   }
+
+  handleClearCategoriesClicked() {
+    this.onClearCategoriesClicked.emit();
+  }
+
+  isActiveFilter(category: Category): boolean {
+    return this.categoryFilters?.some(c => c.id === category.id) ?? false;
+  }
+
 }

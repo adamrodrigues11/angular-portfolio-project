@@ -13,28 +13,15 @@
     <app-categories
       [categoryFilters]="categoryFilters"
       (onCategoryClicked)="updateCategoryFilters($event)"
+      (onClearCategoriesClicked)="clearCategoryFilters()"
     ></app-categories>
     <h3>Tags: </h3>
     <app-tags
       [tagFilters]="tagFilters"
       (onTagClicked)="updateTagFilters($event)"
+      (onClearTagsClicked)="clearTagFilters()"
     ></app-tags>
-    <h3>Current Filters:</h3>
-    <div>
-      <ng-container *ngIf="categoryFilters?.length">
-        <p *ngFor="let category of categoryFilters">
-          Category: {{ category.name }}
-          <a (click)="removeCategoryFilter(category)">X</a>
-        </p>
-      </ng-container>
-      <ng-container *ngIf="tagFilters?.length">
-        <p *ngFor="let tag of tagFilters">
-          Tag: {{ tag.name }}
-          <a (click)="removeTagFilter(tag)">X</a>
-        </p>
-      </ng-container>
-      <a *ngIf="categoryFilters?.length || tagFilters?.length" (click)="clearFilters()">Clear All</a>
-    </div>
+    <button (click)="clearAllFilters()">Clear All Filters</button>
   </section>
 </main>
 <footer>&copy; {{ date.getFullYear() }} {{ author }}</footer>

@@ -1,5 +1,16 @@
 <div class="categories">
-    <div class="category" *ngFor="let category of categories" (click)="handleCategoryClicked(category)">
-        <span>{{ category.name }}</span>
+    <div class="category" *ngFor="let category of categories">
+        <span 
+            (click)="handleCategoryClicked(category)"
+            [class.active]="isActiveFilter(category)"
+        >
+            {{ category.name }}
+        </span>
     </div>
+    <button 
+        (click)="categoryFilters?.length && handleClearCategoriesClicked()"
+        [ngStyle]="{ 'visibility': categoryFilters?.length ? 'visible' : 'hidden' }"
+    >
+        Clear All
+    </button>
 </div>

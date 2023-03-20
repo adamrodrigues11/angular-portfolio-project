@@ -1,5 +1,16 @@
 <div class="tags">
-    <div class="tag" *ngFor="let tag of tags" (click)="handleTagClicked(tag)">
-        <span>{{ tag.name }}</span>
+    <div class="tag" *ngFor="let tag of tags">
+        <span
+            (click)="handleTagClicked(tag)"
+            [class.active]="isActiveFilter(tag)"
+        >
+            {{ tag.name }}
+        </span>
     </div>
+    <button 
+        (click)="tagFilters?.length && handleClearTagsClicked()"
+        [ngStyle]="{ 'visibility': tagFilters?.length ? 'visible' : 'hidden' }"
+    >
+        Clear All
+    </button>
 </div>

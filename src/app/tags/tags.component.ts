@@ -10,6 +10,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class TagsComponent {
   @Input() tagFilters?: Tag[];
   @Output() onTagClicked = new EventEmitter<Tag>();
+  @Output() onClearTagsClicked = new EventEmitter<void>();
   tags: Tag[] = [];
 
   constructor(private tagService: TagService) {
@@ -24,5 +25,13 @@ export class TagsComponent {
 
   handleTagClicked(tag: Tag) {
     this.onTagClicked.emit(tag);
-  }  
+  }
+
+  handleClearTagsClicked() {
+    this.onClearTagsClicked.emit();
+  }
+
+  isActiveFilter(tag: Tag): boolean {
+    return this.tagFilters?.some(t => t.id === tag.id) ?? false;
+  }
 }

@@ -39,20 +39,30 @@ export class AppComponent {
   }
 
   // do not mutate input state directly in order to allow child component to detect changes onPush
-  clearFilters() {
+  clearCategoryFilters() {
     this.categoryFilters = [];
+  }
+
+  clearTagFilters() {
     this.tagFilters = [];
   }
-  addCategoryFilter(category: Category) {
+
+  clearAllFilters() {
+    this.clearCategoryFilters();
+    this.clearTagFilters();
+  }
+
+  private addCategoryFilter(category: Category) {
     this.categoryFilters = [...this.categoryFilters, category]
   }
-  removeCategoryFilter(category: Category) {
+  private removeCategoryFilter(category: Category) {
     this.categoryFilters = [...this.categoryFilters].filter(c => c.id !== category.id);
   }
-  addTagFilter(tag: Tag) {
+  private addTagFilter(tag: Tag) {
     this.tagFilters = [...this.tagFilters, tag]
   }
-  removeTagFilter(tag: Tag) {
+  private removeTagFilter(tag: Tag) {
     this.tagFilters = [...this.tagFilters].filter(t => t.id !== tag.id);
   }
+  
 }
