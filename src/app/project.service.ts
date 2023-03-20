@@ -20,14 +20,14 @@ export class ProjectService {
     return array === undefined || array.length === 0;
   }
 
-  private filterProjectsByCategories(categoryFilters: Category[] ): Project[] {
-    return this.projectsData.filter(p => {
+  private filterProjectsByCategories(categoryFilters: Category[], projects?: Project[]): Project[] {
+    return (projects ?? this.projectsData).filter(p => {
       return categoryFilters.some(c => c.id === p.category?.id);
     });
   }
 
-  private filterProjectsByTags(tagFilters: Tag[] ): Project[] {
-    return this.projectsData.filter(p => {
+  private filterProjectsByTags(tagFilters: Tag[], projects?: Project[]): Project[] {
+    return (projects ?? this.projectsData).filter(p => {
       return tagFilters.some(t => p.tags.some(pt => pt.id === t.id));
     });
   }
