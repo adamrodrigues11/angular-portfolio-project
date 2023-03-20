@@ -5,10 +5,12 @@
       [categoryFilters]="categoryFilters"
       (onCategoryClicked)="updateCategoryFilters($event)"
       [tagFilters]="tagFilters"
-      (onTagClicked)="updateTagFilters($event)" 
+      (onTagClicked)="updateTagFilters($event)"
+      (onProjectSelected)="handleProjectSelected($event)"
+      (onProjectDeselected)="handleProjectDeselected()"
     ></app-projects>
   </section> 
-  <section class="sidebar">
+  <section *ngIf="!selectedProject" class="sidebar">
     <h3>Categories:</h3>
     <app-categories
       [categoryFilters]="categoryFilters"

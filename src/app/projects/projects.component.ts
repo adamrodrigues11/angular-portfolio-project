@@ -16,6 +16,8 @@ export class ProjectsComponent implements OnChanges {
   @Output() onCategoryClicked = new EventEmitter<Category>();
   @Input() tagFilters?: Tag[];
   @Output() onTagClicked = new EventEmitter<Tag>();
+  @Output() onProjectSelected = new EventEmitter<Project>();
+  @Output() onProjectDeselected = new EventEmitter<void>();
   selectedProject?: Project;
 
   constructor(private projectService: ProjectService) { 
@@ -40,10 +42,12 @@ export class ProjectsComponent implements OnChanges {
 
   handleProjectClicked(project: Project): void {
     this.selectedProject = project;
+    this.onProjectSelected.emit(project);
   }
 
   clearSelectedProject(): void {
     this.selectedProject = undefined;
+    this.onProjectDeselected.emit();
   }
 
   handleCategoryClicked(category: Category): void {

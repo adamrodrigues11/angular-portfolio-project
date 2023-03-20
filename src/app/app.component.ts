@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 import { Category } from './model/category';
 import { Tag } from './model/tag';
+import { Project } from './model/project';
 
 @Component({
   selector: 'app-root',
@@ -12,9 +13,18 @@ export class AppComponent {
   title: string = 'SSD Portfolio';
   date: Date = new Date();
   author: string = 'Adam Rodrigues';
+  selectedProject?: Project;
   // use empty arrays instead of undefined to simply updating logic
   categoryFilters: Category[] = []; 
   tagFilters: Tag[] = [];
+
+  handleProjectSelected(project: Project): void {
+    this.selectedProject = project;
+  }
+
+  handleProjectDeselected(): void {
+    this.selectedProject = undefined;
+  }
 
   updateCategoryFilters(category: Category) {
     // if the category is in the list, remove it
