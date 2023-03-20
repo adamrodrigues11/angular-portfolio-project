@@ -7,7 +7,7 @@ import { Tag } from '../model/tag';
 @Component({
   selector: 'app-projects',
   templateUrl: './projects.component.html',
-  styleUrls: ['./projects.component.css'],
+  styleUrls: ['./projects.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
