@@ -1,16 +1,19 @@
 <div class="categories">
-    <div class="category" *ngFor="let category of categories">
-        <span 
-            (click)="handleCategoryClicked(category)"
-            [class.active]="isActiveFilter(category)"
+    <div class="title-and-button">
+        <h3>Categories:</h3>
+        <button 
+            (click)="categoryFilters?.length && handleClearCategoriesClicked()"
+            [ngStyle]="{ 'visibility': categoryFilters?.length ? 'visible' : 'hidden' }"
         >
-            {{ category.name }}
-        </span>
+            Clear All
+        </button>
     </div>
-    <button 
-        (click)="categoryFilters?.length && handleClearCategoriesClicked()"
-        [ngStyle]="{ 'visibility': categoryFilters?.length ? 'visible' : 'hidden' }"
+    <div  
+        *ngFor="let category of categories"
+        (click)="handleCategoryClicked(category)"
+        [class.active]="isActiveFilter(category)"
+        class="category"
     >
-        Clear All
-    </button>
+        <span>{{ category.name }}</span>
+    </div>
 </div>

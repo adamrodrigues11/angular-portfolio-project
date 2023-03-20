@@ -1,16 +1,19 @@
 <div class="tags">
-    <div class="tag" *ngFor="let tag of tags">
-        <span
-            (click)="handleTagClicked(tag)"
-            [class.active]="isActiveFilter(tag)"
+    <div class="title-and-button">
+        <h3>Tags:</h3>
+        <button 
+            (click)="tagFilters?.length && handleClearTagsClicked()"
+            [ngStyle]="{ 'visibility': tagFilters?.length ? 'visible' : 'hidden' }"
         >
-            {{ tag.name }}
-        </span>
-    </div>
-    <button 
-        (click)="tagFilters?.length && handleClearTagsClicked()"
-        [ngStyle]="{ 'visibility': tagFilters?.length ? 'visible' : 'hidden' }"
-    >
         Clear All
-    </button>
+        </button>
+    </div>
+    <div 
+        *ngFor="let tag of tags"
+        (click)="handleTagClicked(tag)"
+        [class.active]="isActiveFilter(tag)"
+        class="tag"
+    >
+        <span>{{ tag.name }}</span>
+    </div>
 </div>

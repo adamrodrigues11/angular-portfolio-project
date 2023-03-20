@@ -7,7 +7,7 @@ import { Project } from './model/project';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['app.component.css', 'app.component.scss']
+  styleUrls: ['app.component.scss']
 })
 export class AppComponent {
   title: string = 'SSD Portfolio';
@@ -17,6 +17,11 @@ export class AppComponent {
   // use empty arrays instead of undefined to simply updating logic
   categoryFilters: Category[] = []; 
   tagFilters: Tag[] = [];
+  showSidebar: boolean = false;
+
+  toggleSidebar(): void {
+    this.showSidebar = !this.showSidebar;
+  };
 
   handleProjectSelected(project: Project): void {
     this.selectedProject = project;

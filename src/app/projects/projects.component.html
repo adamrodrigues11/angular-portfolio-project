@@ -1,26 +1,35 @@
-<ng-container *ngIf="!selectedProject">
+<section *ngIf="!selectedProject" class="projects-grid">
     <article
         *ngFor="let project of projects"
+        class="project-card"
     >
         <section>
-            <h2 (click)="handleProjectClicked(project)">{{ project.title | uppercase }}</h2>
+            <h2 class="link" (click)="handleProjectClicked(project)">{{ project.title | uppercase }}</h2>
             <p [innerHTML]="project.excerpt"></p>
             <img [src]="'assets/images/' + ( project.thumb ?? 'project-thumb-default.jpeg') " [alt]="project.title" />
         </section>
         <footer>
-            <div *ngIf="project.category" (click)="handleCategoryClicked(project.category)">
-                Category: <span>{{ project.category.name }}</span>
+            <div 
+                *ngIf="project.category" 
+                (click)="handleCategoryClicked(project.category)"
+            >
+                Category:
+                <span class="link">{{ project.category.name }}</span>
             </div>
             <div *ngIf="project.tags?.length">
                 Tags:
-                <span *ngFor="let tag of project.tags" (click)="handleTagClicked(tag)">
+                <span 
+                    *ngFor="let tag of project.tags"
+                    (click)="handleTagClicked(tag)"
+                    class="link"
+                >
                     {{ tag.name }}
                 </span>
             </div>
         </footer>
     </article>
-</ng-container>
+</section>
 <section *ngIf="selectedProject">
-    <div (click)="clearSelectedProject()">Back</div>
+    <div class="back-button" (click)="clearSelectedProject()"></div>
     <app-project-detail [project]="selectedProject"></app-project-detail>
 </section>

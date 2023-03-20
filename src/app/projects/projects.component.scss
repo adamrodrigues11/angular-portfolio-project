@@ -1,0 +1,69 @@
+@mixin tablet-and-desktop {
+    @media (min-width: 750px) {
+        @content;
+    }
+}
+
+@mixin desktop-only {
+    @media (min-width: 1250px) {
+        @content;
+    }
+}
+
+.projects-grid {
+    max-width: 80%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 2rem;
+    @include tablet-and-desktop {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 90%;
+    }
+    @include desktop-only {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .project-card {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.26);
+        .link {
+            color: black;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: bold;
+            &:active, &:hover {
+                text-decoration: underline;
+                text-shadow: 1px 1px 1px lightgray;
+            }
+        }
+    }    
+}
+
+.back-button {
+    position: absolute;
+    margin: 1rem;
+    z-index: 2;
+    top: -4.5rem;
+    left: 0;
+    width: fit-content;
+    cursor: pointer;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.26);
+    transition: all 0.3s ease;
+    &:hover,
+    &:active {
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.26);
+    }
+    &::before {
+        content: "←";
+        margin: 0 0.5rem 0 0.5rem;
+    }
+}

@@ -1,6 +1,5 @@
-<header>{{ title }}</header>
+<header><h1>{{ title }}</h1></header>
 <main>
-  <section class="projects-grid" >
     <app-projects
       [categoryFilters]="categoryFilters"
       (onCategoryClicked)="updateCategoryFilters($event)"
@@ -9,21 +8,39 @@
       (onProjectSelected)="handleProjectSelected($event)"
       (onProjectDeselected)="handleProjectDeselected()"
     ></app-projects>
-  </section> 
-  <section *ngIf="!selectedProject" class="sidebar">
-    <h3>Categories:</h3>
+  <button 
+    *ngIf="!selectedProject"
+    (click)="toggleSidebar()"
+    [ngClass]="{
+      'sidebar-button': true
+    }" 
+  >
+    <span *ngIf="showSidebar">X</span>
+    <i *ngIf="!showSidebar" class="fa-solid fa-filter"></i>
+  </button>
+  <div 
+    *ngIf="!selectedProject"
+    [ngClass]="{
+      'sidebar': true,
+      'show': showSidebar
+    }"
+  >
     <app-categories
       [categoryFilters]="categoryFilters"
       (onCategoryClicked)="updateCategoryFilters($event)"
       (onClearCategoriesClicked)="clearCategoryFilters()"
     ></app-categories>
-    <h3>Tags: </h3>
     <app-tags
       [tagFilters]="tagFilters"
       (onTagClicked)="updateTagFilters($event)"
       (onClearTagsClicked)="clearTagFilters()"
     ></app-tags>
-    <button (click)="clearAllFilters()">Clear All Filters</button>
-  </section>
+    <button 
+      *ngIf="categoryFilters?.length || tagFilters?.length"
+      (click)="clearAllFilters()"
+    >
+      Clear All Filters
+    </button>
+  </div>
 </main>
 <footer>&copy; {{ date.getFullYear() }} {{ author }}</footer>
