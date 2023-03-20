@@ -15,7 +15,18 @@ export const PROJECTS: Project[] = [
         "created_at": "2023-02-24T01:10:14.000000Z",
         "updated_at": "2023-02-24T01:10:14.000000Z",
         "category": { "id": 3, "slug": "full-stack", "name": "Full Stack" },
-        "tags": []
+        "tags": [
+          {
+            "id": 1,
+            "name": "PHP",
+            "slug": "php",
+          },
+          {
+            "id": 2,
+            "name": "Laravel",
+            "slug": "laravel",
+          }
+        ]
     },
     {
         "id": 2,
@@ -31,7 +42,13 @@ export const PROJECTS: Project[] = [
         "created_at": "2023-02-24T01:10:14.000000Z",
         "updated_at": "2023-02-24T01:10:14.000000Z",
         "category": { "id": 1, "slug": "back-end", "name": "Back End" },
-        "tags": []
+        "tags": [
+            {
+                "id": 3,
+                "name": "Node.js",
+                "slug": "node-js",
+            }
+        ]
     },
     {
         "id": 3,
@@ -52,13 +69,11 @@ export const PROJECTS: Project[] = [
             "id": 10,
             "name": "CSS",
             "slug": "css",
-            // "pivot": { "projects_id": 3, "tags_id": 10 }
           },
           {
             "id": 4,
             "name": "React",
             "slug": "react",
-            // "pivot": { "projects_id": 3, "tags_id": 4 }
           }
         ]
     },
@@ -76,7 +91,18 @@ export const PROJECTS: Project[] = [
         "created_at": "2023-02-24T01:10:14.000000Z",
         "updated_at": "2023-02-24T01:10:14.000000Z",
         "category": { "id": 2, "slug": "front-end", "name": "Front End" },
-        "tags": []
+        "tags": [
+            {
+                "id": 11,
+                "name": "HTML5",
+                "slug": "html5",
+            },
+            {
+                "id": 12,
+                "name": "SASS",
+                "slug": "sass",
+            }
+        ]
     },
     {
         "id": 5,
@@ -92,7 +118,23 @@ export const PROJECTS: Project[] = [
         "created_at": "2023-02-24T01:10:14.000000Z",
         "updated_at": "2023-02-24T01:10:14.000000Z",
         "category": { "id": 2, "slug": "front-end", "name": "Front End" },
-        "tags": []
+        "tags": [
+            {
+                "id": 11,
+                "name": "HTML5",
+                "slug": "html5",
+            },
+            {
+                "id": 10,
+                "name": "CSS",
+                "slug": "css",
+            },
+            {
+                "id": 13,
+                "name": "JavaScript",
+                "slug": "javascript",
+            }
+        ]
     },
     {
         "id": 6,
@@ -108,7 +150,13 @@ export const PROJECTS: Project[] = [
         "created_at": "2023-02-24T01:10:14.000000Z",
         "updated_at": "2023-02-24T01:10:14.000000Z",
         "category": null,
-        "tags": []
+        "tags": [
+            {
+                "id": 14,
+                "name": "Swift",
+                "slug": "swift",
+            },
+        ]
     },
     {
         "id": 7,
