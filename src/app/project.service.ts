@@ -48,9 +48,19 @@ export class ProjectService {
       return of(this.filterProjectsByTags(tagFilters!));
     }
 
+    // union filtering
     // otherwise, if both filter arrays are passed and non-empty, get the union of the filtered projects by category and tag
-    const projectsByCategory = this.filterProjectsByCategories(categoryFilters!); // filter by categories first
-    const filteredProjects = this.filterProjectsByTags(tagFilters!, projectsByCategory); // then filter by tags
+    const filteredProjects = projectArrayUnion(
+      this.filterProjectsByCategories(categoryFilters!), 
+      this.filterProjectsByTags(tagFilters!)
+    );
     return of(filteredProjects);
+    
+    // // intersection filtering
+    // // otherwise, if both filter arrays are passed and non-empty, get the union of the filtered projects by category and tag
+    // const projectsByCategory = this.filterProjectsByCategories(categoryFilters!); // filter by categories first
+    // const filteredProjects = this.filterProjectsByTags(tagFilters!, projectsByCategory); // then filter by tags
+    // return of(filteredProjects);
+
   }
 }
