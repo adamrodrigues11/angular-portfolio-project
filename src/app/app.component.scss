@@ -1,0 +1,50 @@
+
+main {
+    display: flex;
+    justify-content: space-between;
+    .projects-grid {
+        flex: 1;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        grid-gap: 1rem;
+        margin: 1rem 0;
+        .card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+            transition: all 0.3s ease;
+            &:hover,
+            &:active {
+                transition: all 0.3s ease;
+                box-shadow: 0 8px 26px rgba(0, 0, 0, 0.26);
+            }
+            a {
+                color: black;
+                &:hover,
+                &:active {
+                    color: navy;
+                }
+            }
+        }    
+        .hidden {
+            display: none;
+        }
+    }
+    .sidebar {
+        flex: 0 0 200px;
+        padding-left: 1rem;
+        display: flex;
+        flex-direction: column;
+        row-gap: 1rem;
+        label::after {
+            content: ' ';
+        }
+    }
+}
+
+
+

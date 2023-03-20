@@ -1,0 +1,26 @@
+<ng-container *ngIf="!selectedProject">
+    <article
+        *ngFor="let project of projects"
+    >
+        <section>
+            <h2 (click)="handleProjectClicked(project)">{{ project.title | uppercase }}</h2>
+            <p [innerHTML]="project.excerpt"></p>
+            <img [src]="'assets/images/' + ( project.thumb ?? 'project-thumb-default.jpeg') " [alt]="project.title" />
+        </section>
+        <footer>
+            <div *ngIf="project.category" (click)="handleCategoryClicked(project.category)">
+                Category: <span>{{ project.category.name }}</span>
+            </div>
+            <div *ngIf="project.tags?.length">
+                Tags:
+                <span *ngFor="let tag of project.tags" (click)="handleTagClicked(tag)">
+                    {{ tag.name }}
+                </span>
+            </div>
+        </footer>
+    </article>
+</ng-container>
+<section *ngIf="selectedProject">
+    <div (click)="clearSelectedProject()">Back</div>
+    <app-project-detail [project]="selectedProject"></app-project-detail>
+</section>
