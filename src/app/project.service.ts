@@ -49,10 +49,8 @@ export class ProjectService {
     }
 
     // otherwise, if both filter arrays are passed and non-empty, get the union of the filtered projects by category and tag
-    const filteredProjects = projectArrayUnion(
-      this.filterProjectsByCategories(categoryFilters!), 
-      this.filterProjectsByTags(tagFilters!)
-    );
+    const projectsByCategory = this.filterProjectsByCategories(categoryFilters!); // filter by categories first
+    const filteredProjects = this.filterProjectsByTags(tagFilters!, projectsByCategory); // then filter by tags
     return of(filteredProjects);
   }
 }
