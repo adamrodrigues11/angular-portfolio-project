@@ -11,28 +11,25 @@ import projectArrayUnion from './ProjectArrayUnion';
   providedIn: 'root'
 })
 export class ProjectService {
-  projectsByCategories: Project[];
-  projectsByTags: Project[];
+  projectsData: Project[];
   constructor() {
-    this.projectsByCategories = [];
-    this.projectsByTags = [];
+    this.projectsData = [...PROJECTS];
   }
   
   private isEmptyOrUndefined(array?: Array<any>): boolean {
     return array === undefined || array.length === 0;
   }
 
-  private filterProjectsByCategories(categoryFilters: Category[] ): void {
-    // otherwise, filter projects raw data by category
-    this.projectsByCategories = [...PROJECTS].filter(p => {
+  private filterProjectsByCategories(categoryFilters: Category[], projects?: Project[]): Project[] {
+    return (projects ?? this.projectsData).filter(p => {
       return categoryFilters.some(c => c.id === p.category?.id);
-    })
+    });
   }
 
-  private filterProjectsByTags(tagFilters: Tag[] ): void {
-    this.projectsByTags = [...PROJECTS].filter(p => {
+  private filterProjectsByTags(tagFilters: Tag[], projects?: Project[]): Project[] {
+    return (projects ?? this.projectsData).filter(p => {
       return tagFilters.some(t => p.tags.some(pt => pt.id === t.id));
-    })
+    });
   }
 
   getProjects(categoryFilters?: Category[] , tagFilters?: Tag[] ): Observable<Project[]> {
@@ -43,23 +40,17 @@ export class ProjectService {
 
     // if only category filters are passed to the method, return projects filtered by category
     if(this.isEmptyOrUndefined(tagFilters)) {
-      this.filterProjectsByCategories(categoryFilters!);
-      console.log('projectsByCategory', this.projectsByCategories)
-      return of(this.projectsByCategories);
+      return of(this.filterProjectsByCategories(categoryFilters!));
     }
 
     // if only tag filters are passed to the method, return projects filtered by tag
     if (this.isEmptyOrUndefined(categoryFilters)) {
-      this.filterProjectsByTags(tagFilters!);
-      console.log('projectsByTag', this.projectsByTags)
-      return of(this.projectsByTags);
+      return of(this.filterProjectsByTags(tagFilters!));
     }
 
     // otherwise, if both filter arrays are passed and non-empty, get the union of the filtered projects by category and tag
-    this.filterProjectsByCategories(categoryFilters!);
-    this.filterProjectsByTags(tagFilters!);
-    const filteredProjects = projectArrayUnion(this.projectsByCategories, this.projectsByTags);
-    console.log('projects', filteredProjects)
+    const projectsByCategory = this.filterProjectsByCategories(categoryFilters!); // filter by categories first
+    const filteredProjects = this.filterProjectsByTags(tagFilters!, projectsByCategory); // then filter by tags
     return of(filteredProjects);
   }
 }
