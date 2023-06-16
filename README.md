@@ -1,5 +1,8 @@
 # PortfolioAngular
 
+Basic portfolio app built as an academic project to learn the basics of Angular development including two way model binding, decorators, pipes, and services.
+Although it's not visually flashy, my focus was on implenting user-defined category and tag filtering to the projects data either by union or intersection (check out the "main" and "intersection" branches respectively).
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.0.
 
 ## Development server
